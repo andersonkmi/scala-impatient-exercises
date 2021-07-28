@@ -12,7 +12,7 @@ class Rational (numerator: Int, denominator: Int) {
                   denom * that.denom)
   }
 
-  def lessThan(that: Rational): Boolean = {
-    false
-  }
+  def lessThan(that: Rational): Boolean = this.numer * that.denom < this.denom * that.numer
+
+  def max(that: Rational): Rational = if (lessThan(that)) that else this
 }
