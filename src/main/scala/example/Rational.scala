@@ -5,6 +5,8 @@ class Rational (numerator: Int, denominator: Int) {
   val numer: Int = numerator
   val denom: Int = denominator
 
+  def this(numerator: Int) = this(numerator, 1)
+
   override def toString: String = numer + "/" + denom
 
   def add (that: Rational): Rational = {

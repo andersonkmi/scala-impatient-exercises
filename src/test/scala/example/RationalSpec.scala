@@ -30,4 +30,10 @@ class RationalSpec extends AnyFlatSpec with Matchers {
 
     firstRational lessThan secondRational shouldBe true
   }
+
+  "The second rational" should "be like that" in {
+    val firstRational = new Rational(2)
+    firstRational.numer shouldEqual 2
+    firstRational.denom shouldEqual 1
+  }
 }
