@@ -16,4 +16,18 @@ class RationalSpec extends AnyFlatSpec with Matchers {
 
     firstRational lessThan secondRational shouldBe true
   }
+
+  "When 1/2 lessThan 1/2" should "be false" in {
+    val firstRational = new Rational(1, 2)
+    val secondRational = new Rational(1, 2)
+
+    firstRational lessThan secondRational shouldBe false
+  }
+
+  "When 1/3 lessThan 1/2" should "be false" in {
+    val firstRational = new Rational(1, 3)
+    val secondRational = new Rational(1, 2)
+
+    firstRational lessThan secondRational shouldBe true
+  }
 }
