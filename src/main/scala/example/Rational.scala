@@ -3,10 +3,10 @@ package example
 class Rational (numerator: Int, denominator: Int) {
   require(denominator != 0)
 
-  private val commonDenominator: Int = 0
+  private val commonDenominator: Int = gcd(numerator.abs, denominator.abs)
 
-  val numer: Int = numerator
-  val denom: Int = denominator
+  val numer: Int = numerator / commonDenominator
+  val denom: Int = denominator / commonDenominator
 
   def this(numerator: Int) = this(numerator, 1)
 
@@ -21,5 +21,7 @@ class Rational (numerator: Int, denominator: Int) {
 
   def max(that: Rational): Rational = if (lessThan(that)) that else this
 
-  private def gcd (a: Int, b: Int): Int = ???
+  private def gcd (a: Int, b: Int): Int = {
+    if (b == 0) a else gcd(b, a % b)
+  }
 }
