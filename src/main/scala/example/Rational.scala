@@ -1,5 +1,7 @@
 package example
 
+import scala.annotation.tailrec
+
 class Rational (numerator: Int, denominator: Int) {
   require(denominator != 0)
 
@@ -12,16 +14,21 @@ class Rational (numerator: Int, denominator: Int) {
 
   override def toString: String = numer + "/" + denom
 
-  def add (that: Rational): Rational = {
+  def + (that: Rational): Rational = {
     new Rational (numer * that.denom + denom * that.numer,
                   denom * that.denom)
+  }
+
+  def * (that: Rational): Rational = {
+    new Rational( numer * that.numer, denom * that.denom)
   }
 
   def lessThan(that: Rational): Boolean = this.numer * that.denom < this.denom * that.numer
 
   def max(that: Rational): Rational = if (lessThan(that)) that else this
 
-  private def gcd (a: Int, b: Int): Int = {
+  @tailrec
+  private def gcd(a: Int, b: Int): Int = {
     if (b == 0) a else gcd(b, a % b)
   }
 }

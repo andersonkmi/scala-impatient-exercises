@@ -42,4 +42,13 @@ class RationalSpec extends AnyFlatSpec with Matchers {
     firstRational.numer shouldEqual 1
     firstRational.denom shouldEqual 2
   }
+
+  "1/2 + 1/2" should "be 1/1" in {
+    val r1 = new Rational(1, 2)
+    val r2 = new Rational(1, 2)
+    val r3 = r1 + r2
+
+    r3.numer shouldEqual 1
+    r3.denom shouldEqual 1
+  }
 }
