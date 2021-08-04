@@ -3,7 +3,12 @@ package example
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
+import scala.language.implicitConversions
+
 class RationalSpec extends AnyFlatSpec with Matchers {
+
+  implicit def intToRational(number: Int): Rational = new Rational(number)
+
   "The first rational" should "be like that" in {
     val firstRational = new Rational(1, 2)
     firstRational.numer shouldEqual 1
@@ -50,5 +55,21 @@ class RationalSpec extends AnyFlatSpec with Matchers {
 
     r3.numer shouldEqual 1
     r3.denom shouldEqual 1
+  }
+
+  "1/2 + 1" should "be 3/2" in {
+    val r1 = new Rational(1, 2)
+    val r3 = r1 + 1
+
+    r3.numer shouldEqual 3
+    r3.denom shouldEqual 2
+  }
+
+  "1 + 1/2" should "be 3/2" in {
+    val r1 = new Rational(1, 2)
+    val r3 = 1 + r1
+
+    r3.numer shouldEqual 3
+    r3.denom shouldEqual 2
   }
 }

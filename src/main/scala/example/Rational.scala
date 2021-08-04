@@ -1,6 +1,7 @@
 package example
 
 import scala.annotation.tailrec
+import scala.language.implicitConversions
 
 class Rational (numerator: Int, denominator: Int) {
   require(denominator != 0)
@@ -17,6 +18,10 @@ class Rational (numerator: Int, denominator: Int) {
   def + (that: Rational): Rational = {
     new Rational (numer * that.denom + denom * that.numer,
                   denom * that.denom)
+  }
+
+  def + (that: Int): Rational = {
+    new Rational (numer + denom * that, denom)
   }
 
   def * (that: Rational): Rational = {
